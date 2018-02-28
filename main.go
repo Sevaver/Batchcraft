@@ -14,6 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+/*
+Changes to file are removal of the word Minecraft from it
+The file is now being used for RCON support for STEAM CMD games
+*/
+
 package main
 
 import (
@@ -73,7 +78,7 @@ func sendCommand(addr, pass, data string) (string, error) {
 	return string(resp.Payload), nil
 }
 
-// Formats data into a ready-to-send Minecraft RCON request
+// Formats data into a ready-to-send RCON request
 func buildPacket(id, t int, data []byte) []byte {
 	buf := bytes.NewBuffer([]byte(""))
 	binary.Write(buf, binary.LittleEndian, uint32(len(data) + 10))
@@ -84,7 +89,7 @@ func buildPacket(id, t int, data []byte) []byte {
 	return buf.Bytes()
 }
 
-// Parses out key information from a Minecraft RCON response
+// Parses out key information from a RCON response
 func readPacket(data []byte) Packet {
 	buf := bytes.NewBuffer(data)
 	var l uint32
